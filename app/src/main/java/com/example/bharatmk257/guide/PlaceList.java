@@ -1,10 +1,11 @@
 package com.example.bharatmk257.guide;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 
-import com.google.android.material.tabs.TabLayout;
+
 
 public class PlaceList extends AppCompatActivity {
 
@@ -17,17 +18,19 @@ public class PlaceList extends AppCompatActivity {
         setContentView(R.layout.activity_placelist);
 
 
-        tabLayout = (TabLayout)findViewById(R.id.sliding_tabs);
-        viewPager = (ViewPager)findViewById(R.id.viewpager);
+        tabLayout = findViewById(R.id.sliding_tabs);
+        viewPager = findViewById(R.id.viewpager);
 
         tabLayout.addTab(tabLayout.newTab().setText("Kakariya"));
         tabLayout.addTab(tabLayout.newTab().setText("Reading \nLibrary"));
+        tabLayout.addTab(tabLayout.newTab().setText("Auto World"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(this,getSupportFragmentManager(),tabLayout.getTabCount());
+
+        SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(getApplicationContext(),getSupportFragmentManager(),tabLayout.getTabCount());
 
         viewPager.setAdapter(adapter);
-
+        tabLayout.setupWithViewPager(viewPager);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -44,6 +47,5 @@ public class PlaceList extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
-
     }
 }
