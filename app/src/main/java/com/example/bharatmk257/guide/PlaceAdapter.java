@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder> {
@@ -41,17 +43,20 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
     }
 
 
-// complete code from here
-
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
+        Places places = placesList.get(position);
+        holder.nameOfPlace.setText(places.getNameOfPlace());
+
+        //loading images
+        Glide.with(mContext).load(places.getImageOfPlace()).into(holder.imageOfPlace);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return placesList.size();
     }
 
 }
