@@ -32,6 +32,10 @@ public class KakariyaFragment extends Fragment {
 
     private void initViews() {
         recyclerView = getActivity().findViewById(R.id.recyclerViewPlace);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setHasFixedSize(true);
+
     }
 
 //    public void onCreate(Bundle savedInstanceState) {
@@ -74,7 +78,9 @@ public class KakariyaFragment extends Fragment {
         a = new Places("gionee", covers[9], "Loction");
         placesList.add(a);
 
-        adapter.notifyDataSetChanged();
+        //adapter = new PlaceAdapter();
+        recyclerView.setAdapter(adapter);
+
     }
 //    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 //        private int spanCount;
