@@ -3,11 +3,13 @@ package com.example.bharatmk257.guide;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class KakariyaFragment extends Fragment {
@@ -28,6 +30,9 @@ public class KakariyaFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         initViews();
         photos();
+        adapter = new PlaceAdapter(getContext(), placesList);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
     }
 
     private void initViews() {
@@ -52,6 +57,7 @@ public class KakariyaFragment extends Fragment {
                 R.drawable.tajmahal
         };
 
+        placesList = new ArrayList<>();
         Places
                 a = new Places("tajmahal", covers[0], "Location");
         placesList.add(a);
@@ -74,7 +80,7 @@ public class KakariyaFragment extends Fragment {
         a = new Places("gionee", covers[9], "Loction");
         placesList.add(a);
 
-        adapter.notifyDataSetChanged();
+//        adapter.notifyDataSetChanged();
     }
 //    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 //        private int spanCount;
